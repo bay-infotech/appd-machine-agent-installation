@@ -54,12 +54,12 @@ provider "vsphere" {
 ##################################################################################
 
 data "vsphere_datacenter" "dc" {
-  name = "da-compute"
+  name = "BIT-DC01"
   #name = "DEVNET-DMZ"
 }
 
 data "vsphere_datastore" "datastore" {
-  name          = "datastore-1"
+  name          = "esx01-datastore1"
   #name          = "hx-demo-ds1"
   datacenter_id = "${data.vsphere_datacenter.dc.id}"
 }
