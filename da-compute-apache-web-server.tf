@@ -65,19 +65,19 @@ data "vsphere_datastore" "datastore" {
 }
 
 data "vsphere_compute_cluster" "cluster" {
-  name          = "cluster-1"
+  name          = "General"
   #name          = "hx-demo"
   datacenter_id = "${data.vsphere_datacenter.dc.id}"
 }
 
 data "vsphere_network" "network" {
-  name          = "management-vlan-200"
+  name          = "BIT-DVS01-VLAN52"
   #name          = "Management"
   datacenter_id = "${data.vsphere_datacenter.dc.id}"
 }
 
 data "vsphere_virtual_machine" "template" {
-  name          = "CentOS-8-Minimal"
+  name          = "CentOS-7-Minimal"
   datacenter_id = "${data.vsphere_datacenter.dc.id}"
 }
 
@@ -89,7 +89,7 @@ resource "vsphere_virtual_machine" "vm1" {
   firmware         = "${var.vsphere_vm_firmware}"
 
   num_cpus = 2
-  memory   = 8096
+  memory   = 4096
   guest_id = "${data.vsphere_virtual_machine.template.guest_id}"
 
   scsi_type = "${data.vsphere_virtual_machine.template.scsi_type}"
@@ -113,15 +113,15 @@ resource "vsphere_virtual_machine" "vm1" {
     customize {
       linux_options {
         host_name = "apache-webserver-${count.index + 1}"
-        domain    = "test.internal"
+        domain    = "bitpass.com"
       }
 
       network_interface {
-        ipv4_address = "10.200.0.${101 + count.index}"
+        ipv4_address = "192.168.52.${101 + count.index}"
         ipv4_netmask = 24
       }
 
-      ipv4_gateway = "10.200.0.254"
+      ipv4_gateway = "192.168.52.254"
 
     }
   }
@@ -139,7 +139,7 @@ resource "vsphere_virtual_machine" "vm1" {
     type     = "ssh"
     user     = "${var.service_account_username}"
     password = "${var.service_account_password}"
-    host     = "10.200.0.${101 + count.index}"
+    host     = "192.168.52.${101 + count.index}"
     }
   }
   
