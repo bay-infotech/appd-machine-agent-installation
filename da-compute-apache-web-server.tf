@@ -78,7 +78,7 @@ data "vsphere_network" "network" {
 }
 
 data "vsphere_virtual_machine" "template" {
-  name          = "CentOS-9-Template"
+  name          = "CentOS-7-Template"
   datacenter_id = "${data.vsphere_datacenter.dc.id}"
 }
 
@@ -134,6 +134,7 @@ resource "vsphere_virtual_machine" "vm1" {
     "touch /home/.ssh/authorized_keys",
     "chmod 600 /home/.ssh/authorized_keys",
     "echo ${var.ssh-pub-key} >> /home/.ssh/authorized_keys"
+    "
     ]
 
     connection {
