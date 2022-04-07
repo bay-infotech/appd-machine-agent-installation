@@ -169,7 +169,7 @@ resource "vsphere_virtual_machine" "vm1" {
 } # "vsphere_virtual_machine" "vm1"
 
 # resource "null_resource" "ansible-playbook" {
-  Call Ansible from our local host where Terraform runs but only after the machines are created
+  # # Call Ansible from our local host where Terraform runs but only after the machines are created
   # provisioner "local-exec" {
    # command = "ansible-playbook -u root -i apache-web-servers.txt main.yml "
    # }
