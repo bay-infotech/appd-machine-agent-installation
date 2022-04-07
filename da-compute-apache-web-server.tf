@@ -129,11 +129,11 @@ resource "vsphere_virtual_machine" "vm1" {
 
   provisioner "remote-exec"  {
     inline = [
-    "mkdir /home/delgadm/.ssh",
-    "chmod 700 /home/delgadm/.ssh",
-    "touch /home/delgadm/.ssh/authorized_keys",
-    "chmod 600 /home/delgadm/.ssh/authorized_keys",
-    "echo ${var.ssh-pub-key} >> /home/delgadm/.ssh/authorized_keys"
+    "mkdir /home/.ssh",
+    "chmod 700 /home/.ssh",
+    "touch /home/.ssh/authorized_keys",
+    "chmod 600 /home/.ssh/authorized_keys",
+    "echo ${var.ssh-pub-key} >> /home/.ssh/authorized_keys"
     ]
 
     connection {
@@ -149,7 +149,7 @@ resource "vsphere_virtual_machine" "vm1" {
 resource "null_resource" "ansible-playbook" {
   # Call Ansible from our local host where Terraform runs but only after the machines are created
   provisioner "local-exec" {
-   command = "ansible-playbook -u delgadm -i apache-web-servers.txt main.yml --vault-password-file ./.vault_pass.txt"
+   command = "ansible-playbook -u root -i apache-web-servers.txt main.yml --vault-password-file ./.vault_pass.txt"
    }
 
    depends_on = [vsphere_virtual_machine.vm1] # Let's not kick off this resource until the VMs are created
