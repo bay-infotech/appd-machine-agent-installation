@@ -151,5 +151,5 @@ resource "null_resource" "ansible-playbook" {
    command = "ansible-playbook -u delgadm -i apache-web-servers.txt main.yml --vault-password-file ./.vault_pass.txt"
    }
 
-   depends_on = ["vsphere_virtual_machine.vm1"] # Let's not kick off this resource until the VMs are created
+   depends_on = [vsphere_virtual_machine.vm1] # Let's not kick off this resource until the VMs are created
 }
