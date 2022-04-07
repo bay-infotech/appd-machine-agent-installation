@@ -77,7 +77,7 @@ data "vsphere_network" "network" {
 }
 
 data "vsphere_virtual_machine" "template" {
-  name          = "CentOS-7-Minimal"
+  name          = "CentOS-7-template"
   datacenter_id = "${data.vsphere_datacenter.dc.id}"
 }
 
