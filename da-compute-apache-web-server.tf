@@ -127,17 +127,17 @@ resource "vsphere_virtual_machine" "vm1" {
     }
   }
   provisioner "file" {
-    source      = "apache-web-servers.txt"
+    source      = "./apache-web-servers.txt"
     destination = "/tmp/apache-web-servers.txt"
   }
   
   provisioner "file" {
-    source      = "main.yml"
+    source      = "./main.yml"
     destination = "/tmp/main.yml"
   }
   
   provisioner "file" {
-    source      = "/roles"
+    source      = "./roles"
     destination = "/tmp"
     
     connection {
