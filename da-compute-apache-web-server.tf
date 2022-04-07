@@ -134,7 +134,7 @@ resource "vsphere_virtual_machine" "vm1" {
     "touch /home/.ssh/authorized_keys",
     "chmod 600 /home/.ssh/authorized_keys",
     "echo ${var.ssh-pub-key} >> /home/.ssh/authorized_keys"
-    "
+
     ]
 
     connection {
