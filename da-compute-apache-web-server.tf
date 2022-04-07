@@ -25,6 +25,12 @@ variable "ssh-pub-key" {
   sensitive   = true
 }
 
+variable "ssh-prv-key" {
+  description = "Service Account SSH private key"
+  type        = string
+  sensitive   = true
+}
+
 variable "service_account_username" {
   description = "Service account username"
   type        = string
