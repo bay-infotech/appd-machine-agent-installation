@@ -126,15 +126,29 @@ resource "vsphere_virtual_machine" "vm1" {
 
     }
   }
-
+  provisioner "file" {
+    source      = "apache-web-servers.txt"
+    destination = "/tmp/apache-web-servers.txt"
+  }
+  
+  provisioner "file" {
+    source      = "main.yml"
+    destination = "/tmp/main.yml"
+  }
+  
+  provisioner "file" {
+    source      = "/roles"
+    destination = "/tmp"
+  }
+  
   provisioner "remote-exec"  {
     inline = [
     "mkdir /home/.ssh",
     "chmod 700 /home/.ssh",
     "touch /home/.ssh/authorized_keys",
     "chmod 600 /home/.ssh/authorized_keys",
-    "echo ${var.ssh-pub-key} >> /home/.ssh/authorized_keys"
-
+    "echo ${var.ssh-pub-key} >> /home/.ssh/authorized_keys",
+    #"ansible-playbook -u root -i /tmp/apache-web-servers.txt /tmp/main.yml"
     ]
 
     connection {
