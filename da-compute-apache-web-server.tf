@@ -192,7 +192,6 @@ provisioner "remote-exec"  {
     }
   }
   
-
   
   # provisioner "file" {
     # source      = "./main.yml"
