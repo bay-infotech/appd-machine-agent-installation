@@ -15,7 +15,7 @@
 
 - name: Install the AppDynamics machine agent 
   yum:
-    name: /home/appdynamics-machine-agent-21.5.0.3130.x86_64.rpm
+    name: /home/appdynamics-machine-agent-22.3.0.3296.x86_64.rpm
     state: present
     disable_gpg_check: yes
 
