@@ -175,7 +175,7 @@ resource "null_resource" "ansible-playbook" {
         type     = "ssh"
         user     = "${var.service_account_username}"
         password = "${var.service_account_password}"
-        host     = "{var.ansible_host}"
+        host     = "${var.ansible_host}"
         }
       }
       
@@ -190,7 +190,7 @@ resource "null_resource" "ansible-playbook" {
         type     = "ssh"
         user     = "${var.service_account_username}"
         password = "${var.service_account_password}"
-        host     = "{var.ansible_host}"
+        host     = "${var.ansible_host}"
         }
       }
   
