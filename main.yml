@@ -10,7 +10,7 @@
 
 - name: Install and manage one or more Apache Web Server(s)
   hosts: all
-  debugger: never
+  debugger: on_failed
   become: yes
   tasks:
     - name: Include group variables
@@ -30,6 +30,5 @@
       tags:
         - install_apache
     - name: Install the AppDynamics Machine agent
-      debugger: on_failed
       include_role:
         name: appd-machine-agent
