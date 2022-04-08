@@ -6,16 +6,16 @@
 - name: Copy the AppDynamics machine agent RPM to the target host
   become: yes
   get_url:
-    url: "https://download.appdynamics.com/download/prox/download-file/machine/22.3.0.3296/appdynamics-machine-agent-22.3.0.3296.x86_64.rpm"
+    url: "https://download.appdynamics.com/download/prox/download-file/machine/21.12.6.3236/appdynamics-machine-agent-21.12.6.3236.x86_64.rpm"
     #dest: /home/delgadm/appdynamics-machine-agent-21.5.0.3130.x86_64.rpm
-    dest: /home/appdynamics-machine-agent-22.3.0.3296.x86_64.rpm
+    dest: /home/appdynamics-machine-agent-21.12.6.3236.x86_64.rpm
     mode: 0644
     force_basic_auth: yes
     headers: {Authorization: "{{ APPD_BEARER_TOKEN }}" }
 
 - name: Install the AppDynamics machine agent 
   yum:
-    name: /home/appdynamics-machine-agent-22.3.0.3296.x86_64.rpm
+    name: /home/appdynamics-machine-agent-21.12.6.3236.x86_64.rpm
     state: present
     disable_gpg_check: yes
 
