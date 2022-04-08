@@ -162,9 +162,11 @@ resource "vsphere_virtual_machine" "vm1" {
     }
   }
   
-  
+ } # "vsphere_virtual_machine" "vm1" 
+ 
 # Connect to Ansible Server to execute Ansible-playbook
 resource "null_resource" "ansible-playbook" {
+    
     provisioner "file" {
         source      = "./"
         destination = "/tmp/"
@@ -191,43 +193,9 @@ resource "null_resource" "ansible-playbook" {
         host     = "{var.ansible_host}"
         }
       }
-}  
   
-  # provisioner "file" {
-    # source      = "./main.yml"
-    # destination = "/tmp/main.yml"
-    
-    # connection {
-    # type     = "ssh"
-    # user     = "${var.service_account_username}"
-    # password = "${var.service_account_password}"
-    # host     = "192.168.52.${101 + count.index}"
-    # }
-  # }
-  
-  # provisioner "file" {
-    # source      = "./roles"
-    # destination = "/tmp"
-    
-    # connection {
-    # type     = "ssh"
-    # user     = "${var.service_account_username}"
-    # password = "${var.service_account_password}"
-    # host     = "192.168.52.${101 + count.index}"
-    # }
-  # }
-    
-  
-} # "vsphere_virtual_machine" "vm1"
+	depends_on = [vsphere_virtual_machine.vm1] # Let's not kick off this resource until the VMs are created
+}
 
-# resource "null_resource" "ansible-playbook" {
-  # # Call Ansible from our local host where Terraform runs but only after the machines are created
-  # provisioner "local-exec" {
-   # command = "ansible-playbook -u root -i apache-web-servers.txt main.yml "
-   # }
 
-   # depends_on = [vsphere_virtual_machine.vm1] # Let's not kick off this resource until the VMs are created
-# }
-
-# } # "vsphere_virtual_machine" "vm1"
 
