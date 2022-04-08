@@ -36,3 +36,8 @@
   service:
     name: appdynamics-machine-agent
     state: started
+
+- name: Restart the AppDynamics machine agent
+  service:
+    name: appdynamics-machine-agent
+    state: restarted
