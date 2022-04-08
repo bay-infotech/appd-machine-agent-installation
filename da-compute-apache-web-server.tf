@@ -164,34 +164,34 @@ resource "vsphere_virtual_machine" "vm1" {
   
   
 # Connect to Ansible Server to execute Ansible-playbook
+resource "null_resource" "ansible-playbook" {
+    provisioner "file" {
+        source      = "./"
+        destination = "/tmp/"
+        
+        connection {
+        type     = "ssh"
+        user     = "${var.service_account_username}"
+        password = "${var.service_account_password}"
+        host     = "{var.ansible_host}"
+        }
+      }
+      
+      
+    provisioner "remote-exec"  {
+        inline = [
+        "ansible-playbook --private-key ${var.ssh-prv-key} -u ${var.service_account_username} -i /tmp/apache-web-servers.txt /tmp/main.yml"
 
-provisioner "file" {
-    source      = "./"
-    destination = "/tmp/"
-    
-    connection {
-    type     = "ssh"
-    user     = "${var.service_account_username}"
-    password = "${var.service_account_password}"
-    host     = "{var.ansible_host}"
-    }
-  }
-  
-  
-provisioner "remote-exec"  {
-    inline = [
-    "ansible-playbook --private-key ${var.ssh-prv-key} -u ${var.service_account_username} -i /tmp/apache-web-servers.txt /tmp/main.yml"
+        ]
 
-    ]
-
-    connection {
-    type     = "ssh"
-    user     = "${var.service_account_username}"
-    password = "${var.service_account_password}"
-    host     = "{var.ansible_host}"
-    }
-  }
-  
+        connection {
+        type     = "ssh"
+        user     = "${var.service_account_username}"
+        password = "${var.service_account_password}"
+        host     = "{var.ansible_host}"
+        }
+      }
+}  
   
   # provisioner "file" {
     # source      = "./main.yml"
