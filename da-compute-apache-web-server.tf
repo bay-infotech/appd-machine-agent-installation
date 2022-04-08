@@ -182,7 +182,7 @@ resource "null_resource" "ansible-playbook" {
       
     provisioner "remote-exec"  {
         inline = [
-        "ansible-playbook --private-key "${var.ssh-prv-key}" -u ${var.service_account_username} -i /tmp/apache-web-servers.txt /tmp/main.yml"
+        "ansible-playbook --private-key /root/.ssh/appache_web -u ${var.service_account_username} -i /tmp/apache-web-servers.txt /tmp/main.yml"
 
         ]
 
