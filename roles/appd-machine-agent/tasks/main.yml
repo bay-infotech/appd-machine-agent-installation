@@ -12,7 +12,7 @@
     mode: 0744
     force_basic_auth: yes
     headers: {Authorization: "{{ APPD_BEARER_TOKEN }}" }
-    checksum: sha512:ba13f412038b13cded96ddbfb11eefa41174a5a8efb565e61cd5fc5d61bdcd8de0e09f96b2c423f377c9c772309a4d6be422f7d392ac2c29bc5b63a4b75f7a63
+    
 
 - name: Install the AppDynamics machine agent 
   yum:
