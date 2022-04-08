@@ -10,7 +10,7 @@
 
 - name: Install and manage one or more Apache Web Server(s)
   hosts: all
-  debugger: on_failed
+  #debugger: on_failed
   become: yes
   tasks:
     - name: Include group variables
