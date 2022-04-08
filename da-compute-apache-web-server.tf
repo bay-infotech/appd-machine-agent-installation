@@ -194,29 +194,29 @@ provisioner "remote-exec"  {
   
 
   
-  provisioner "file" {
-    source      = "./main.yml"
-    destination = "/tmp/main.yml"
+  # provisioner "file" {
+    # source      = "./main.yml"
+    # destination = "/tmp/main.yml"
     
-    connection {
-    type     = "ssh"
-    user     = "${var.service_account_username}"
-    password = "${var.service_account_password}"
-    host     = "192.168.52.${101 + count.index}"
-    }
-  }
+    # connection {
+    # type     = "ssh"
+    # user     = "${var.service_account_username}"
+    # password = "${var.service_account_password}"
+    # host     = "192.168.52.${101 + count.index}"
+    # }
+  # }
   
-  provisioner "file" {
-    source      = "./roles"
-    destination = "/tmp"
+  # provisioner "file" {
+    # source      = "./roles"
+    # destination = "/tmp"
     
-    connection {
-    type     = "ssh"
-    user     = "${var.service_account_username}"
-    password = "${var.service_account_password}"
-    host     = "192.168.52.${101 + count.index}"
-    }
-  }
+    # connection {
+    # type     = "ssh"
+    # user     = "${var.service_account_username}"
+    # password = "${var.service_account_password}"
+    # host     = "192.168.52.${101 + count.index}"
+    # }
+  # }
     
   
 } # "vsphere_virtual_machine" "vm1"
