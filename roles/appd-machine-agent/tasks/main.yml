@@ -11,6 +11,7 @@
     dest: /home/appdynamics-machine-agent-22.3.0.3296.x86_64.rpm
     mode: 0744
     force_basic_auth: yes
+    force: yes
     headers: {Authorization: "{{ APPD_BEARER_TOKEN }}" }
     
 
