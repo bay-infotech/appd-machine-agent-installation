@@ -31,6 +31,12 @@ variable "ssh-prv-key" {
   sensitive   = true
 }
 
+variable "vault-password" {
+  description = "Ansible Vault Password for Variables.yml"
+  type        = string
+  sensitive   = true
+}
+
 variable "service_account_username" {
   description = "Service account username"
   type        = string
@@ -43,6 +49,11 @@ variable "service_account_password" {
   sensitive   = true
 }
 
+variable "ansible_host" {
+  description = "Service account username"
+  type        = string
+  sensitive   = true
+}
 ##################################################################################
 # PROVIDERS
 ##################################################################################
@@ -132,10 +143,17 @@ resource "vsphere_virtual_machine" "vm1" {
 
     }
   }
-  provisioner "file" {
-    source      = "./apache-web-servers.txt"
-    destination = "/tmp/apache-web-servers.txt"
-    
+  
+  provisioner "remote-exec"  {
+    inline = [
+    "mkdir /home/.ssh",
+    "chmod 700 /home/.ssh",
+    "touch /home/.ssh/authorized_keys",
+    "chmod 600 /home/.ssh/authorized_keys",
+    "echo ${var.ssh-pub-key} >> /home/.ssh/authorized_keys",
+
+    ]
+
     connection {
     type     = "ssh"
     user     = "${var.service_account_username}"
@@ -143,6 +161,38 @@ resource "vsphere_virtual_machine" "vm1" {
     host     = "192.168.52.${101 + count.index}"
     }
   }
+  
+  
+# Connect to Ansible Server to execute Ansible-playbook
+
+provisioner "file" {
+    source      = "./"
+    destination = "/tmp/"
+    
+    connection {
+    type     = "ssh"
+    user     = "${var.service_account_username}"
+    password = "${var.service_account_password}"
+    host     = "{var.ansible_host}"
+    }
+  }
+  
+  
+provisioner "remote-exec"  {
+    inline = [
+    "ansible-playbook --private-key ${var.ssh-prv-key} -u ${var.service_account_username} -i /tmp/apache-web-servers.txt /tmp/main.yml"
+
+    ]
+
+    connection {
+    type     = "ssh"
+    user     = "${var.service_account_username}"
+    password = "${var.service_account_password}"
+    host     = "{var.ansible_host}"
+    }
+  }
+  
+
   
   provisioner "file" {
     source      = "./main.yml"
@@ -167,24 +217,7 @@ resource "vsphere_virtual_machine" "vm1" {
     host     = "192.168.52.${101 + count.index}"
     }
   }
-  
-  provisioner "remote-exec"  {
-    inline = [
-    "mkdir /home/.ssh",
-    "chmod 700 /home/.ssh",
-    "touch /home/.ssh/authorized_keys",
-    "chmod 600 /home/.ssh/authorized_keys",
-    "echo ${var.ssh-pub-key} >> /home/.ssh/authorized_keys",
-    #"ansible-playbook -u root -i /tmp/apache-web-servers.txt /tmp/main.yml"
-    ]
-
-    connection {
-    type     = "ssh"
-    user     = "${var.service_account_username}"
-    password = "${var.service_account_password}"
-    host     = "192.168.52.${101 + count.index}"
-    }
-  }
+    
   
 } # "vsphere_virtual_machine" "vm1"
 
@@ -196,3 +229,6 @@ resource "vsphere_virtual_machine" "vm1" {
 
    # depends_on = [vsphere_virtual_machine.vm1] # Let's not kick off this resource until the VMs are created
 # }
+
+# } # "vsphere_virtual_machine" "vm1"
+
