@@ -25,11 +25,6 @@ variable "ssh-pub-key" {
   sensitive   = true
 }
 
-variable "ssh-prv-key" {
-  description = "Service Account SSH private key"
-  type        = string
-  sensitive   = true
-}
 
 variable "vault-password" {
   description = "Ansible Vault Password for Variables.yml"
