@@ -1,8 +1,3 @@
-[![published](https://static.production.devnetcloud.com/codeexchange/assets/images/devnet-published.svg)](https://developer.cisco.com/codeexchange/github/repo/CiscoDevNet/appd-machine-agent-installation)
-
-|Technology|Category|Product|Languages|
-|----------|--------|-------|---------|
-|Cloud|Data Center,Open Source|AppDynamics|Hashicorp Configuration Language (HCL)|
 
 # Automate deployment of virtual machines and AppDynamics Machine Agent
  This solution is an example of how to get started with monitoring and observability using AppDynamics's Machine Agent. The example details how to:
@@ -93,25 +88,25 @@ Each of these commands includes the `secret.tfvars` containing the sensitive var
 
 You see five virtual machines that are created with static IP addresses in vSphere.
 
-<img src="images/vsphere-virtual-machines.png" alt="Virtual Machines screenshot of the vSphere client">
+![](/assets/vsphere-virtual-machines.png)
 
 ### Apache Web Servers
 
 Each Apache server has a custom `index.html` file that includes the hostname of the machine.
 
-<img src="images/apache-server-result.png" alt="Apache Server Result">
+<img src="assets/apache-server-result.png" alt="Apache Server Result">
 
 ### AppDynamics Controller
 
 The five virtual machines appear in the AppDynamics controller, each running an Apache Web Server, and all five appearing in the AppDynamics controller.
 
-<img src="images/appd-machine-agents.png" alt="List of Machine Agents in AppDynamics screenshot">
+<img src="assets/appd-machine-agents.png" alt="List of Machine Agents in AppDynamics screenshot">
 
 Click any of the check box available just before the `OS` column; then click `View Details` to see that the data reported by the Machine Agent to the AppDynamics Controller. 
 
 You can see the data that is reported by the Machine Agent on `apache-webserver-1`.
 
-<img src="images/appd-web-server-1.png" alt="Data reported with Load Average, CPU, Availability, and Memory">
+<img src="assets/appd-web-server-1.png" alt="Data reported with Load Average, CPU, Availability, and Memory">
 
 
 ###  Monitor HTTP as a service for extra credit
@@ -125,7 +120,7 @@ Now that you have an Apache Web Server running and you have a Machine Agent onbo
 5. Select the server that runs the check.  
    In this case, `apache-web-server-2` is used to run a check against the HTTP service running on `apache-web-server-1`.
 
-<img src="images/add-service-monitoring-page-1.png" alt="Select the server for an AppDynamics configuration for an HTTP Check">
+<img src="assets/add-service-monitoring-page-1.png" alt="Select the server for an AppDynamics configuration for an HTTP Check">
 
 6. Next, click the `Response Validtor` tab followed by selecting `Add Response Validator`.
 7. Keep `Status Code` and select `Equals` for the condition followed by entering a value of `200`. 
@@ -133,28 +128,28 @@ Now that you have an Apache Web Server running and you have a Machine Agent onbo
    We chose an HTTP response of 200 to keep things simple but there are so many others to choose from. See the example below.
 9. Click Save.
 
-<img src="images/add-service-monitoring-page-2.png" alt="Select the Response Validator for an AppDynamics configuration for an HTTP Check">
+<img src="assets/add-service-monitoring-page-2.png" alt="Select the Response Validator for an AppDynamics configuration for an HTTP Check">
 
 After saving the configuration, you are returned to the Service Availability page where you will see your newly created Service Availability check displayed. After a few minutes, you will data about the service reported back by the machine agent as it periodically checks the health of the HTTP service running on `apache-webserver-1`. 
 
 The server running the check is listed under the `Server` column and the monitored service is listed in the `Monitored Service` column.
 
-<img src="images/appd-service-availability.png" alt="AppDynamics Service Availability panel screenshot">
+<img src="assets/appd-service-availability.png" alt="AppDynamics Service Availability panel screenshot">
 
 10. To see details about the service, click the service and click `Details`.
 
-<img src="images/appd-service-availability-details.png" alt="AppDynamics Service Availability details screenshot">
+<img src="assets/appd-service-availability-details.png" alt="AppDynamics Service Availability details screenshot">
 
-## Related Repos
+## BayInfotech Repositories
 
-Now that you are collecting metrics for machines hosting applications and their infrastructure, check out how to integrate agents into applications with a hands-on sample.
+Please visit our repositories for more detail and other projects in automation and programability:
 
-[Cloud Native Sample Bookinfo App Observability](https://developer.cisco.com/codeexchange/github/repo/CiscoDevNet/bookinfo-cloudnative-sample)
+[https://github.com/bay-infotech](https://github.com/bay-infotech)
 
-## Related DevNet Sandbox
 
-[Cisco AppDynamics Sandbox](https://devnetsandbox.cisco.com/RM/Diagram/Index/9e056219-ab84-4741-9485-de3d3446caf2?diagramType=Topology)
+## BayInfotech website
+We are working hard to bring more automation and programmability into community. Please contact us for more detail projects and solutions
 
-## Links to DevNet Learning Labs
+[https://bay-infotech.com](https://bay-infotech.com)
 
-[AppDynamics Fundamentals](https://developer.cisco.com/learning/modules/appdynamics-fundamentals)
+

@@ -16,19 +16,6 @@
     - name: Include group variables
       include_vars:
         file: variables.yml
-    - name: Configure /etc/resolv.conf
-      include_role:
-        name: resolv.conf
-      tags:
-        - configure_resolv_conf
-    - name: Open ports needed for the Apache Web HTTP Server
-      include_role:
-        name: firewalld
-    - name: Install Apache
-      include_role:
-        name: apache-web-server
-      tags:
-        - install_apache
     - name: Install the AppDynamics Machine agent
       include_role:
         name: appd-machine-agent

@@ -1,8 +1,0 @@
----
-# handlers file for resolv.conf
-# cat resolv.conf/handlers/main.yml
-
-- name: reload NetworkManager
-  service:
-    name: NetworkManager
-    state: reloaded

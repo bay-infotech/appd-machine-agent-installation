@@ -1,1 +1,0 @@
-vsphere_vm_firmware = "bios"

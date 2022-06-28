@@ -164,7 +164,7 @@ resource "null_resource" "ansible-playbook" {
     
     provisioner "file" {
         source      = "./"
-        destination = "/tmp/"
+        destination = "/tmp"
         
         connection {
         type     = "ssh"

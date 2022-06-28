@@ -1,9 +1,0 @@
-###############################################################
-# Inventory file of all Apache Web Servers
-###############################################################
-[apache_web_servers]
-192.168.52.101 ansible_ssh_common_args='-o StrictHostKeyChecking=no'
-192.168.52.102 ansible_ssh_common_args='-o StrictHostKeyChecking=no'
-192.168.52.103 ansible_ssh_common_args='-o StrictHostKeyChecking=no'
-192.168.52.104 ansible_ssh_common_args='-o StrictHostKeyChecking=no'
-192.168.52.105 ansible_ssh_common_args='-o StrictHostKeyChecking=no'
